@@ -24,11 +24,11 @@ This social network provides:
 
     - landing page
 
-    - recommendations by locations, by rating
+    - recommendations by locations ordered by rating
 
   - Registered user:
 
-    - recommendations by locations, by rating
+    - recommendations by locations ordered by by rating
     - subscription feed
     - rate and comment post
 
