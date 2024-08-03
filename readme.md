@@ -24,13 +24,12 @@ This social network provides:
 
     - landing page
 
-    - recommendations by locations ordered by rating
+    - recommendations by locations
 
   - Registered user:
 
-    - recommendations by locations ordered by by rating
+    - recommendations by locations
     - subscription feed
-    - rate and comment post
 
 - Search page
 
