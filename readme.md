@@ -2,7 +2,7 @@
 
 
 
-Social network for travelers is is a homework assignment for [System Design course](https://balun.courses/courses/system_design).
+Social network for travelers is is a homework assignment for [System Design course](https:/		balun.courses/courses/system_design).
 
 This social network provides:
 
@@ -22,15 +22,16 @@ This social network provides:
 
   - For guests: landing page
   - Registered user:
-    - recommendations by locations, by likes
+    - recommendations by locations, by rating
     - subscription feed
+    - rate and comment post
 
 - Search page
 
   - by location
   - by travelers
 
-- User's profile page (permanent URL)
+- User profile page (permanent URL)
 
   - edit for owner
   - subscribe for other users
