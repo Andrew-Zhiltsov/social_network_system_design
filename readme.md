@@ -20,8 +20,14 @@ This social network provides:
 
 - Main page
 
-  - For guests: landing page
+  - For guests:
+
+    - landing page
+
+    - recommendations by locations, by rating
+
   - Registered user:
+
     - recommendations by locations, by rating
     - subscription feed
     - rate and comment post
