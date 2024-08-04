@@ -3,14 +3,75 @@ info:
   title: Social network for travelers - OpenAPI 3.0
   version: 1.0.0
 tags:
+  - name: session
+    description: Operations about session (login, logout)
   - name: user
     description: Operations about user
   - name: post
     description: Operations about post
-  - name: feed
-    description: Operations about feed
+  - name: subscription
+    description: Operations about subscription
 paths:
-  /user:
+  /session/login:
+    post:
+      tags:
+        - session
+      summary: Logs user into the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                password:
+                  type: string
+              required:
+                - login
+                - password
+            examples:
+              request:
+                value:
+                  login: "Vasya"
+                  password: "Strong_password!"
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jwt:
+                    type: string
+                required:
+                  - jwt
+              examples:
+                response:
+                  value:
+                    jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        400:
+          description: Invalid username/password supplied
+        401:
+          description: Unauthorized
+        500:
+          description: Server error
+  /session/logout:
+    post:
+      tags:
+        - session
+      summary: Logs out current logged in user session
+      description: ''
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+		  
+  
+  /users:
     post:
       tags:
         - user
@@ -70,64 +131,8 @@ paths:
           description: Bad Request
         500:
           description: Server error
-  /user/login:
-    post:
-      tags:
-        - user
-      summary: Logs user into the system
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                login:
-                  type: string
-                password:
-                  type: string
-              required:
-                - login
-                - password
-            examples:
-              request:
-                value:
-                  login: "Vasya"
-                  password: "Strong_password!"
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  jwt:
-                    type: string
-                required:
-                  - jwt
-              examples:
-                response:
-                  value:
-                    jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-        400:
-          description: Invalid username/password supplied
-        401:
-          description: Unauthorized
-        500:
-          description: Server error
-  /user/logout:
-    post:
-      tags:
-        - user
-      summary: Logs out current logged in user session
-      description: ''
-      operationId: logoutUser
-      parameters: []
-      responses:
-        default:
-          description: successful operation
-  /user/{login}:
+  
+  /users/{login}:
     get:
       tags:
         - user
@@ -207,7 +212,7 @@ paths:
           description: Invalid login supplied
         '404':
           description: User not found
-  /user/findByUser:
+  /users/findByUser:
     get:
       tags:
         - user
@@ -254,7 +259,7 @@ paths:
         400:
           description: Invalid user name value
   
-  /post:
+  /posts:
     post:
       tags:
         - post
@@ -325,7 +330,7 @@ paths:
         500:
           description: Server error
           
-  /post/{id}:
+  /posts/{id}:
     get:
       tags:
         - post
@@ -406,7 +411,7 @@ paths:
         '404':
           description: Post not found
 
-  /post/findByLocation:
+  /posts/findByLocation:
     get:
       tags:
         - post
@@ -459,8 +464,8 @@ paths:
                     - image-url
         400:
           description: Invalid location value
-		  
-  /post/findByUser:
+      
+  /posts/findByUser:
     get:
       tags:
         - post
@@ -513,11 +518,11 @@ paths:
                     - image-url
         400:
           description: Invalid user name value
-		  
-  /feed/subscribe:
+      
+  /subscriptions/subscribe:
     post:
       tags:
-        - feed
+        - subscription
       summary: Subscribe feed by login
       parameters:
         - name: login
@@ -530,10 +535,10 @@ paths:
           description: successful operation
         400:
           description: Invalid user name value
-  /feed/unsubscribe:
+  /subscriptions/unsubscribe:
     post:
       tags:
-        - feed
+        - subscription
       summary: Unsubscribe feed by login
       parameters:
         - name: login
@@ -546,11 +551,11 @@ paths:
           description: successful operation
         400:
           description: Invalid user name value
-		  
-  /feed/{login}:
+      
+  /subscriptions/{login}:
     get:
       tags:
-        - feed
+        - subscription
       summary: Generates feed for specified login
       parameters:
         - name: login
