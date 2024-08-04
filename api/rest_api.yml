@@ -271,8 +271,6 @@ paths:
             schema:
               type: object
               properties:
-                login:
-                  type: string
                 description:
                   type: string
                 location:
@@ -280,13 +278,11 @@ paths:
                 image:
                   type: string
               required:
-                - login
                 - description
                 - location
             examples:
               request:
                 value:
-                  login: "Vasya"
                   description: "Cool location!"
                   location: "Salt lake"
                   image: "base64"
@@ -552,15 +548,15 @@ paths:
         400:
           description: Invalid user name value
       
-  /subscriptions/{login}:
+  /subscriptions:
     get:
       tags:
         - subscription
-      summary: Generates feed for specified login
+      summary: Finds subscriptions by masked traveler name
       parameters:
-        - name: login
-          in: path
-          required: true
+        - name: mask
+          in: query
+          required: false
           schema:
             type: string
         - name: offset
@@ -585,23 +581,9 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
-                      type: string
-                    created_at_utc:
-                      type: string
                     login:
                       type: string
-                    description:
-                      type: string
-                    location:
-                      type: string
-                    image-url:
-                      type: string
                   required:
-                    - id
-                    - created_at_utc
                     - login
-                    - description
-                    - image-url
         400:
-          description: Invalid login value
+          description: Invalid mask value
