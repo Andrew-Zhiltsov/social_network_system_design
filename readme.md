@@ -2,6 +2,8 @@
 
 
 
+### Functional requirements:
+
 Social network for travelers is is a homework assignment for [System Design course](https:/		balun.courses/courses/system_design).
 
 This social network provides:
@@ -12,50 +14,44 @@ This social network provides:
 - finding popular places to travel and viewing posts from those places;
 - viewing other travelers' feeds;
 
-
-
-### Functional requirements:
-
 - Authentication
 
-- Main page
+- UI
 
-  - For guests:
+  - Main page
+    - For guests:
+      - landing page
 
-    - landing page
+      - recommendations by locations
 
-    - recommendations by locations
+    - Registered user:
+      - recommendations by locations
+      - subscription feed
 
-  - Registered user:
+  - Search page
+    - by location
+    - by travelers
 
-    - recommendations by locations
-    - subscription feed
+  - User profile page (permanent URL)
+    - edit for owner
+    - subscribe for other users
 
-- Search page
+  - Post editor
+    - picture
+    - description
+    - location
 
-  - by location
-  - by travelers
+  - Subscriptions editor
 
-- User profile page (permanent URL)
-
-  - edit for owner
-  - subscribe for other users
-
-- Post editor
-
-  - picture
-  - description
-  - location
-
-- Subscriptions editor
 
   
+
 
 ### Non-functional requirements:
 
 - DAU 10M in one year
 
-- availability 99.0%
+- availability 99.99%
 
 - Regions: Commonwealth of Independent States (CIS)
 
@@ -64,6 +60,8 @@ This social network provides:
 - User's behavior
 
   - Posts: 10 per day
+  - Comments: 20 per day
+  - Reactions: 30 per day
   - Feeds reading: 30 per day 
 
 - Limitations
@@ -72,9 +70,14 @@ This social network provides:
 
 - Seasonality
 
-  - Summer vacations
+  - Summer vacations (from June to July) -70% of activity
+  - Other seasons - 30% of activity
 
-- Publishing post time: 10 sec
+- Publishing post time: 1 sec
+
+- Comment post time: 1 sec
+
+- Reaction post time: 1 sec
 
   
 
@@ -82,13 +85,29 @@ This social network provides:
 
 `RPS = dau * avg_requests_per_day_by_user / 86 400 `
 
-RPS = 10 000 000 * 40 / 86400 = 4.6K
+RPS (writing) 
+
+- Posts: 10 000 000 * 10 / 86400 = 1K
+- Comments: 10 000 000 * 20 / 86400 = 2K
+- Reactions: 10 000 000 * 30 / 86400 = 3K
+
+RPS (reading) 
+
+ - Feeds: 10 000 000 * 30 / 86400 = 3K
 
 
 
 `Traffic = rps * avg_request_size`
 
-Traffic = 4.6K * 500kb = 2.3GB/s
+Traffic (writing) 
+
+- Posts:  1K * 500kb = 0.5GB/s
+- Comments:  2K * 500b = 1MB/s
+- Reactions:  3K * 10b = 10KB/s
+
+Traffic (reading) 
+
+- Feeds: 3K * 500kb = 1.5GB/s
 
 
 
