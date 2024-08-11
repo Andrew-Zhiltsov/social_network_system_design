@@ -1,3 +1,10 @@
+// Replication:
+// - master-slave (one async)
+// - replication factor 2
+//
+// Sharding:
+// - key based by id
+
 Table users {
   id integer
   name text
