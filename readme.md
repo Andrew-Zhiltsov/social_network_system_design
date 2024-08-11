@@ -122,3 +122,18 @@ Disks_for_capacity = 16PB / 32 ТБ = 500
 Disks_for_throughput = 500 МB/s / 100 МB/s = 5
 Disks_for_iops = 6K rps / 100 = 6
 Disks = max(ceil(Disks_for_capacity), ceil(Disks_for_throughput), ceil(Disks_for_iops)) = 500
+
+
+
+#### Hosts
+
+Consider replication as master-slave (one async) with replication factor 2
+Sharding: key based by id
+
+`Hosts = disks / disks_per_host`
+
+Hosts = 500 / 2 = 250
+
+`Hosts_with_replication = hosts * replication_factor`
+
+Hosts_with_replication = 250 * 2 = 500  
