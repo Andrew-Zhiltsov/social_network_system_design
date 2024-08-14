@@ -114,3 +114,11 @@ Traffic (reading)
 `Connections = DAU * 0.1`
 
 Connections = 10M * 0.1 = 1M
+
+#### Discs
+
+Capacity = 0.5 GB/s * 86400 * 365 = 16 PB
+Disks_for_capacity = 16PB / 32 ТБ = 500
+Disks_for_throughput = 500 МB/s / 100 МB/s = 5
+Disks_for_iops = 6K rps / 100 = 6
+Disks = max(ceil(Disks_for_capacity), ceil(Disks_for_throughput), ceil(Disks_for_iops)) = 500
